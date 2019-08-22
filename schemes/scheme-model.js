@@ -26,3 +26,20 @@ function findSteps(scheme_id) {
         .where({scheme_id});
 };
 
+function add(scheme) {
+    return db('schemes')
+        .insert(scheme)
+        .then(ids => ({ id: ids[0] }));
+};
+
+function update( id, changes) {
+    return db('schemes')
+        .where({id})
+        .update(changes);
+};
+
+function remove(id) {
+    return db('schemes')
+        .where('id', Number(id))
+        .del();
+};
